@@ -161,7 +161,16 @@ public class DodajKursGUI extends JFrame {
 			btnDodaj = new JButton("Dodaj");
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					unesiKurs();
+					
+					String naziv = textFieldNaziv.getText();
+					String skraceniNaziv = textFieldSkraceniNaziv.getText();
+					int sifra = (Integer) (spinnerSifra.getValue());
+					double prodajni = Double.parseDouble(textFieldProdajniKurs.getText());
+					double kupovni = Double.parseDouble(textFieldKupovniKurs.getText());
+					double srednji = Double.parseDouble(textFieldSrednjiKurs.getText());
+					
+					GUIKontroler.unesiKurs(naziv, skraceniNaziv, sifra, prodajni, kupovni, srednji);
+					dispose();
 				}
 			});
 		}
@@ -188,25 +197,20 @@ public class DodajKursGUI extends JFrame {
 		return spinnerSifra;
 	}
 
-	private void unesiKurs() {
-		try {
-			Valuta valuta = new Valuta();
-
-			// Punjenje podataka o valuti
-			valuta.setNaziv(textFieldNaziv.getText());
-			valuta.setSkraceniNaziv(textFieldSkraceniNaziv.getText());
-			valuta.setSifra((Integer) (spinnerSifra.getValue()));
-			valuta.setProdajni(Double.parseDouble(textFieldProdajniKurs.getText()));
-			valuta.setKupovni(Double.parseDouble(textFieldKupovniKurs.getText()));
-			valuta.setSrednji(Double.parseDouble(textFieldSrednjiKurs.getText()));
-
-			GUIKontroler.unesiKurs(valuta);
-
-			// Zatvaranje DodajValutuGUI prozora
-			dispose();
-		} catch (Exception e1) {
-			JOptionPane.showMessageDialog(contentPane, e1.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
-		}
-	}
+//	private void unesiKurs() {
+//			// Punjenje podataka o valuti
+//			String naziv = textFieldNaziv.getText();
+//			String skraceniNaziv = textFieldSkraceniNaziv.getText();
+//			int sifra = (Integer) (spinnerSifra.getValue());
+//			double prodajni = Double.parseDouble(textFieldProdajniKurs.getText());
+//			double kupovni = Double.parseDouble(textFieldKupovniKurs.getText());
+//			double srednji = Double.parseDouble(textFieldSrednjiKurs.getText());
+//
+//			GUIKontroler.unesiKurs(naziv, skraceniNaziv, sifra, prodajni, kupovni, srednji);
+//
+//			// Zatvaranje DodajValutuGUI prozora
+//			dispose();
+//
+//	}
 
 }
